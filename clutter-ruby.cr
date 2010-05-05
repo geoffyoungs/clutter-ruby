@@ -459,10 +459,10 @@ module Clutter
   CLUTTER_FEATURE_SHADERS_GLSL,
   CLUTTER_FEATURE_OFFSCREEN,
   CLUTTER_FEATURE_STAGE_MULTIPLE);
-	def int:self.feature_get_all
+	def Feature:self.feature_get_all
 		return clutter_feature_get_all();
 	end
-	def bool:self.feature_available?(int feature)
+	def bool:self.feature_available?(Feature feature)
 		return clutter_feature_available(feature);
 	end
 	def self.base_init
