@@ -1,18 +1,22 @@
 h1. Ruby Clutter 1.0 Bindings
 
 h2. Requirements
+
  * "clutter 1.0":http://www.clutter-project.org/
  * "rubber-generate":http://github.com/geoffyoungs/rubber-generate
  * "Ruby Cairo bindings"
 
 h2. Introduction
+
 Basic (partial coverage) bindings for Ruby 1.8 for the new Clutter 1.0 API.
 
 h2. Installation
+
 To build
 <pre>
   $ rubber-generate --generate --build clutter-ruby.cr
 </pre>
+
 To install
 <pre>
   $ sudo rubber-generate --install clutter-ruby.cr
