@@ -4,7 +4,8 @@ h2. Requirements
 
  * "clutter 1.0":http://www.clutter-project.org/
  * "rubber-generate":http://github.com/geoffyoungs/rubber-generate
- * "Ruby Cairo bindings"
+ * "Ruby Cairo bindings":http://cairographics.org/rcairo/
+ * "Ruby GNOME2":http://ruby-gnome2.sourceforge.jp/
 
 h2. Introduction
 
