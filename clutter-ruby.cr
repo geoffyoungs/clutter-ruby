@@ -343,7 +343,23 @@ module Clutter
 		def remove_marker(char *marker_name)
 			clutter_timeline_remove_marker (_self, marker_name);
 		end
-		// gchar ** clutter_timeline_list_markers (_self, gint msecs, gsize *n_markers) G_GNUC_MALLOC;
+		def list_markers(int msecs = -1)
+			VALUE list = Qnil;
+			gsize no_markers = 0;
+			int i;
+			gchar **markers;
+
+			markers = clutter_timeline_list_markers(_self, msecs, &no_markers);
+			list    = rb_ary_new2(no_markers);
+
+			for (i=0; i < no_markers; i++) {
+				rb_ary_push(list, rb_str_new2(markers[i]));
+			}
+
+			g_strfreev(markers);
+
+			return list;
+		end
 		def gboolean:has_marker?(char *marker_name)
 			return clutter_timeline_has_marker (_self, marker_name);
 		end
