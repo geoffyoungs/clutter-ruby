@@ -184,10 +184,10 @@ module Clutter
 	gobject Alpha < CLUTTER_TYPE_ALPHA
 		@type ClutterAlpha
 		def initialize(ClutterTimeline *timeline = NULL, Mode mode = -1)
-			if (timeline && (mode != -1)) {
-				INIT_GOBJECT(clutter_alpha_new());
-			} else {
+			if ((timeline != NULL) && (mode > -1)) {
 				INIT_GOBJECT(clutter_alpha_new_full(timeline, mode));
+			} else {
+				INIT_GOBJECT(clutter_alpha_new());
 			}
 		end
 		def Mode:get_mode
