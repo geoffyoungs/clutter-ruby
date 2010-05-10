@@ -435,8 +435,8 @@ module Clutter
 		def ClutterTimeline*:get_timeline(int id)
 			return clutter_score_get_timeline(_self, id);
 		end
-		def list_timelines()
-			return gslist_to_array_of_ClutterTimeline(clutter_score_list_timelines(_self));
+		def GSList{ClutterTimeline*}:list_timelines()
+			return clutter_score_list_timelines(_self);
 		end
 		alias :timelines :list_timelines
 		def remove(int id)
