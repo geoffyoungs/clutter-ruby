@@ -292,13 +292,13 @@ module Clutter
 		def set_duration(guint msecs)
 			clutter_timeline_set_duration(_self, msecs);
 		end
-		def start!
+		def start
 			clutter_timeline_start (_self);
 		end
-		def pause!
+		def pause
 			clutter_timeline_pause (_self);
 		end
-		def stop!
+		def stop
 			clutter_timeline_stop (_self);
 		end
 		def set_loop(bool loop)
@@ -307,7 +307,7 @@ module Clutter
 		def bool:get_loop
 			return clutter_timeline_get_loop(_self);
 		end
-		def rewind!
+		def rewind
 			clutter_timeline_rewind(_self);
 		end
 		def skip(guint msecs)
