@@ -94,6 +94,15 @@ module Clutter
 		def set_y(gfloat y)
 			clutter_actor_set_y(_self, y);
 		end
+		def set_opacity(int opacity)
+			clutter_actor_set_opacity(_self, opacity);
+		end
+		def int:get_opacity
+			return clutter_actor_get_opacity(_self);
+		end
+		def set_scale(gdouble x_scale, gdouble y_scale)
+			clutter_actor_set_scale(_self, x_scale, y_scale);
+		end
 		def destroy!
 			clutter_actor_destroy(_self);
 		end
