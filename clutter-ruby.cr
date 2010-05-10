@@ -1,26 +1,11 @@
+%min-version 0.0.8
 %pkg-config gtk+-2.0
 %pkg-config clutter-1.0
 %pkg-config clutter-gtk-0.10
 %pkg-config cairo
-%name gclutter
+%name clutter
 
 %{
-#define GLIST_TO_RUBY(what, how)  inline VALUE glist_to_array_of_##what (GList *list) { GList *p; volatile VALUE ary; \
-	ary = rb_ary_new(); \
-	for(p = list ; p ; p = p->next) \
-	{ \
-		rb_ary_push(ary, how ((what *) p->data )); \
-	} \
-	return ary; \
-}
-#define GSLIST_TO_RUBY(what, how)  inline VALUE gslist_to_array_of_##what (GSList *list) { GSList *p; volatile VALUE ary; \
-	ary = rb_ary_new(); \
-	for(p = list ; p ; p = p->next) \
-	{ \
-		rb_ary_push(ary, how ((what *) p->data )); \
-	} \
-	return ary; \
-}
 
 inline void my_init(VALUE self, GObject *_self) {
 	g_object_ref(_self);
@@ -52,9 +37,6 @@ inline void my_init(VALUE self, GObject *_self) {
 				g_value_unset(&value);																			\
 			}
 
-
-GSLIST_TO_RUBY(ClutterTimeline, GOBJ2RVAL)
-// GLIST_TO_RUBY(ClutterTimeline, GOBJ2RVAL)
 %}
  
 %include clutter/clutter.h
