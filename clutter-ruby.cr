@@ -44,6 +44,11 @@ inline void my_init(VALUE self, GObject *_self) {
 %include rb_cairo.h
 
 module Clutter
+	array BUILD_VERSION = [ CLUTTER_MAJOR_VERSION, CLUTTER_MINOR_VERSION, CLUTTER_MICRO_VERSION ]
+	array BINDING_VERSION = [ 0, 9, 0 ]
+	string FLAVOUR = CLUTTER_FLAVOUR
+	string COGL = CLUTTER_COGL
+
 	gobject Gtk < GTK_CLUTTER_TYPE_EMBED
 		@type GtkClutterEmbed
 		def initialize()
