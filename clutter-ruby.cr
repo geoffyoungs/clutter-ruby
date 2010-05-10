@@ -251,17 +251,16 @@ module Clutter
 		post_func if (error) RAISE_GERROR(error);
 
 		def initialize(T_STRING|T_DATA fileOrActor = Qnil)
-			ClutterActor *actor = NULL;
 			
 			if (fileOrActor == Qnil) {
-				actor = clutter_texture_new();
+				INIT_GOBJECT(clutter_texture_new());
 			} else if (TYPE(fileOrActor) == T_STRING) {
-				actor = clutter_texture_new_from_file(RSTRING_PTR(fileOrActor), &error);
+				INIT_GOBJECT(clutter_texture_new_from_file(RSTRING_PTR(fileOrActor), &error));
 			} else if ((TYPE(fileOrActor) == T_DATA) && rb_obj_is_kind_of(fileOrActor, cActor)) {
-				actor = clutter_texture_new_from_actor(CLUTTER_ACTOR(RVAL2GOBJ(fileOrActor)));
+				INIT_GOBJECT(clutter_texture_new_from_actor(CLUTTER_ACTOR(RVAL2GOBJ(fileOrActor))));
+			} else if ((TYPE(fileOrActor) == T_DATA) && rb_obj_is_kind_of(fileOrActor, GTYPE2CLASS(GDK_TYPE_PIXBUF))) {
+				INIT_GOBJECT(gtk_clutter_texture_new_from_pixbuf(GDK_PIXBUF(RVAL2GOBJ(fileOrActor))));
 			}
-
-			INIT_GOBJECT(actor);
 		end
 	end
 
