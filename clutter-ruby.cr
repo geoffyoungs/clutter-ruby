@@ -462,6 +462,94 @@ module Clutter
 			return clutter_score_is_playing(_self);
 		end
 	end
+	gobject Behaviour < CLUTTER_TYPE_BEHAVIOUR
+		@type ClutterBehaviour
+		def remove(ClutterActor *actor)
+			clutter_behaviour_remove(_self, actor);
+		end
+		def remove_all
+			clutter_behaviour_remove_all(_self);
+		end
+		def apply(ClutterActor *actor)
+			clutter_behaviour_apply(_self, actor);
+		end
+		def ClutterAlpha*:get_alpha
+			return clutter_behaviour_get_alpha(_self);
+		end
+		def set_alpha(ClutterAlpha *alpha)
+			clutter_behaviour_set_alpha(_self, alpha);
+		end
+		def int:get_n_actors
+			return clutter_behaviour_get_n_actors(_self);
+		end
+		def ClutterActor*:get_nth_actor(int index)
+			return clutter_behaviour_get_nth_actor(_self, index);
+		end
+		def GSList{ClutterActor*}:get_actors
+			return clutter_behaviour_get_actors(_self);
+		end
+		def bool:is_applied?(ClutterActor *actor)
+			return clutter_behaviour_is_applied(_self, actor);
+		end
+	end
+
+	gobject Path < CLUTTER_TYPE_PATH
+		@type ClutterPath
+		def initialize(char *path=NULL)
+			if(path) {
+				INIT_GOBJECT(clutter_path_new_with_description(path));
+			} else {
+				INIT_GOBJECT(clutter_path_new());
+			}
+		end
+		def set_description(char *path)
+			clutter_path_set_description(_self, path);
+		end
+		def char*:get_description
+			return clutter_path_get_description(_self);
+		end
+		def add_string(char *path)
+			clutter_path_add_string(_self, path);
+		end
+		def clear
+			clutter_path_clear(_self);
+		end
+	end
+	gobject BehaviourPath < CLUTTER_TYPE_BEHAVIOUR_PATH
+		@type ClutterBehaviourPath
+		def initialize(ClutterAlpha *alpha, T_DATA|T_STRING path)
+			if (rb_obj_is_kind_of(path, cPath)) {
+				INIT_GOBJECT(clutter_behaviour_path_new(alpha, RVAL2GOBJ(path)));
+			} else if (TYPE(path)==T_STRING) {
+				INIT_GOBJECT(clutter_behaviour_path_new_with_description(alpha, RSTRING_PTR(path)));
+			} else {
+				rb_raise(rb_eArgError, "Invalid argument 1 for Clutter::BehaviourPath.new(alpha, path_or_string). "
+								"Must be String or Clutter::Path");
+			}
+		end
+		def ClutterPath*:get_path
+			return clutter_behaviour_path_get_path(_self);
+		end
+		def set_path(ClutterPath *path)
+			clutter_behaviour_path_set_path(_self, path);
+		end
+	end
+	gobject BehaviourScale < CLUTTER_TYPE_BEHAVIOUR_SCALE
+		@type ClutterBehaviourScale
+		def initialize(ClutterAlpha *alpha,
+					gdouble x_scale_start, gdouble y_scale_start,
+					gdouble x_scale_end, gdouble y_scale_end)
+			INIT_GOBJECT(clutter_behaviour_scale_new(alpha, x_scale_start,
+						y_scale_start, x_scale_end, y_scale_end));
+		end
+	end
+	gobject BehaviourOpacity < CLUTTER_TYPE_BEHAVIOUR_OPACITY
+		@type ClutterBehaviourOpacity
+		def initialize(ClutterAlpha *alpha, int start_opacity, int end_opacity)
+			INIT_GOBJECT(clutter_behaviour_opacity_new(alpha, start_opacity, end_opacity));
+		end
+	end
+
 	flags Feature (CLUTTER_FEATURE_TEXTURE_NPOT,
   CLUTTER_FEATURE_SYNC_TO_VBLANK,
   CLUTTER_FEATURE_TEXTURE_YUV,
