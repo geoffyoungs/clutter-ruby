@@ -51,6 +51,9 @@ module Clutter
 
 	gobject Gtk < GTK_CLUTTER_TYPE_EMBED
 		@type GtkClutterEmbed
+		def self.init
+			gtk_clutter_init(0,NULL);
+		end
 		def initialize()
 			RBGTK_INITIALIZE(self, gtk_clutter_embed_new());
 		end
