@@ -70,7 +70,7 @@ module Clutter
   CLUTTER_GRAVITY_SOUTH_WEST,
   CLUTTER_GRAVITY_WEST,
   CLUTTER_GRAVITY_NORTH_WEST,
-  CLUTTER_GRAVITY_CENTER);
+  CLUTTER_GRAVITY_CENTER)
 	gobject Actor < CLUTTER_TYPE_ACTOR
 		@type ClutterActor
 		def show
@@ -326,7 +326,6 @@ module Clutter
 		def guint:get_delta
 			return clutter_timeline_get_delta(_self);
 		end
-
 		def add_marker_at_time(char *marker_name, guint msecs)
 			clutter_timeline_add_marker_at_time (_self, marker_name, msecs);
 		end
@@ -464,7 +463,7 @@ module Clutter
   CLUTTER_FEATURE_STAGE_CURSOR,
   CLUTTER_FEATURE_SHADERS_GLSL,
   CLUTTER_FEATURE_OFFSCREEN,
-  CLUTTER_FEATURE_STAGE_MULTIPLE);
+  CLUTTER_FEATURE_STAGE_MULTIPLE)
 	def Feature:self.feature_get_all
 		return clutter_feature_get_all();
 	end
