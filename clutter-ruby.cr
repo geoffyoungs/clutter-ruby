@@ -515,6 +515,42 @@ module Clutter
 			clutter_path_clear(_self);
 		end
 	end
+	int ROTATE_CW = CLUTTER_ROTATE_CW
+	int ROTATE_CCW = CLUTTER_ROTATE_CCW
+
+	gobject BehaviourDepth < CLUTTER_TYPE_BEHAVIOUR_DEPTH
+		@type ClutterBehaviourDepth
+		def initialize(ClutterAlpha *alpha, int depth_start, int depth_end)
+			INIT_GOBJECT(clutter_behaviour_depth_new(alpha, depth_start, depth_end));
+		end
+		def set_bounds(int depth_start, int depth_end)
+			clutter_behaviour_depth_set_bounds(_self, depth_start, depth_end);
+		end
+	end
+	gobject BehaviourEllipse < CLUTTER_TYPE_BEHAVIOUR_ELLIPSE
+		@type ClutterBehaviourEllipse
+		def initialize(ClutterAlpha *alpha, int x, int y, int width, int height, int direction, double start_pos, double end_pos)
+			INIT_GOBJECT(clutter_behaviour_ellipse_new(alpha, x, y, width, height, direction, start_pos, end_pos));
+		end
+		def set_tilt(double x, double y, double z)
+			clutter_behaviour_ellipse_set_tilt(_self, x, y, z);
+		end
+	end
+	int X_AXIS = CLUTTER_X_AXIS
+	int Y_AXIS = CLUTTER_Y_AXIS
+	int Z_AXIS = CLUTTER_Z_AXIS
+	gobject BehaviourRotate < CLUTTER_TYPE_BEHAVIOUR_ROTATE
+		@type ClutterBehaviourRotate
+		def initialize(ClutterAlpha *alpha, int axis, int direction, double start_pos, double end_pos)
+			INIT_GOBJECT(clutter_behaviour_rotate_new(alpha, axis, direction, start_pos, end_pos));
+		end
+		def set_bounds(double angle_start, double angle_end)
+			clutter_behaviour_rotate_set_bounds(_self, angle_start, angle_end);
+		end
+		def set_center(int x, int y, int z)
+			clutter_behaviour_rotate_set_center(_self, x, y, z);
+		end
+	end
 	gobject BehaviourPath < CLUTTER_TYPE_BEHAVIOUR_PATH
 		@type ClutterBehaviourPath
 		def initialize(ClutterAlpha *alpha, T_DATA|T_STRING path)
