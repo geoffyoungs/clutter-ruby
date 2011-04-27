@@ -1,4 +1,4 @@
-%min-version 0.0.8
+%min-version 0.0.11
 %pkg-config gtk+-2.0
 %pkg-config clutter-1.0
 %pkg-config clutter-gtk-0.10

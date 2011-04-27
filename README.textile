@@ -3,7 +3,7 @@ h1. Ruby Clutter 1.0 Bindings
 h2. Requirements
 
  * "clutter 1.0":http://www.clutter-project.org/
- * "rubber-generate":http://github.com/geoffyoungs/rubber-generate (>= 0.0.8)
+ * "rubber-generate":http://github.com/geoffyoungs/rubber-generate (>= 0.0.11)
  * "Ruby Cairo bindings":http://cairographics.org/rcairo/
  * "Ruby GNOME2":http://ruby-gnome2.sourceforge.jp/
 
@@ -15,8 +15,11 @@ Basic (partial coverage) bindings for Ruby 1.8 for the new Clutter 1.0 API for t
  * class Clutter::Alpha
  * class Clutter::Animation
  * class Clutter::Behaviour
+ * class Clutter::BehaviourDepth
+ * class Clutter::BehaviourEllipse
  * class Clutter::BehaviourOpacity
  * class Clutter::BehaviourPath
+ * class Clutter::BehaviourRotate
  * class Clutter::BehaviourScale
  * class Clutter::CairoTexture
  * class Clutter::Color
@@ -34,7 +37,7 @@ h2. Installation
 
 To build
 <pre>
-  $ rubber-generate --generate --build clutter-ruby.cr
+  $ rubber-generate --configure --build clutter-ruby.cr
 </pre>
 
 To install
