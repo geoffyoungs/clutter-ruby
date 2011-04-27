@@ -38,6 +38,9 @@ inline void my_init(VALUE self, GObject *_self) {
 			}
 
 %}
+
+%map GdkPixbuf* > VALUE : GOBJ2RVAL(%%)
+%map VALUE > GdkPixbuf* : GDK_PIXBUF(RVAL2GOBJ(%%))
  
 %include clutter/clutter.h
 %include clutter-gtk/clutter-gtk.h
@@ -262,6 +265,31 @@ module Clutter
 				INIT_GOBJECT(gtk_clutter_texture_new_from_pixbuf(GDK_PIXBUF(RVAL2GOBJ(fileOrActor))));
 			}
 		end
+		def set_from_pixbuf(GdkPixbuf *pixbuf)
+			GError *error = NULL;
+			gtk_clutter_texture_set_from_pixbuf(_self, pixbuf, &error);
+			if (error)
+				RAISE_GERROR(error);
+		end
+		def set_from_filename(char *file)
+			GError *error = NULL;
+			clutter_texture_set_from_file(_self, file, &error);
+			if (error)
+				RAISE_GERROR(error);
+		end
+		def set_load_async(gboolean load_async)
+			clutter_texture_set_load_async(_self, load_async);
+		end
+		def bool:load_async?
+			return clutter_texture_get_load_async(_self);
+		end
+		def set_load_data_async(gboolean load_async)
+			clutter_texture_set_load_data_async(_self, load_async);
+		end
+		def bool:load_data_async?
+			return clutter_texture_get_load_data_async(_self);
+		end
+
 	end
 
 %	ginterface Animatable < CLUTTER_TYPE_ANIMATABLE
