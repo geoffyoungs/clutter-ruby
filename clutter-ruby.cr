@@ -25,7 +25,7 @@ inline void my_init(VALUE self, GObject *_self) {
 			values = g_value_array_new(n_props);																\
 																												\
 			for (i = 0; i < n_props; i++) {																		\
-				volatile VALUE key =  (RARRAY(propkeys)->ptr[i]);												\
+				volatile VALUE key =  (RARRAY_PTR(propkeys)[i]);												\
 				volatile VALUE rvalue = rb_hash_lookup(properties, key);										\
 																												\
 				names[i] = RSTRING_PTR(key);																	\
